@@ -69,6 +69,15 @@ export const convertCollectionsSnapshotToMap = ( collections ) => {
   } ,{});
 }
 
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubsribe = auth.onAuthStateChanged(userAuth => {
+      unsubsribe();
+      resolve(userAuth);
+    }, reject)
+  });
+}
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
